@@ -94,9 +94,8 @@ contract Paymaster is BasePaymaster {
     }
 
     function transferOwnership(address newOwner) public override onlyOwner {
-        require(newOwner != address(0), "Paymaster: owner cannot be address(0)");
         require(newOwner != verifyingSigner, "Paymaster: owner cannot be the verifyingSigner");
-        _transferOwnership(newOwner);
+        super.transferOwnership(newOwner);
     }
 
     receive() external payable {
